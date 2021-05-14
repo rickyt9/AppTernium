@@ -9,6 +9,7 @@ using System.Web;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Text;
+using AppTernium.Models;
 
 namespace AppTernium.Pages {
     public class IndexModel : PageModel {
