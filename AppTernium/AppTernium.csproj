@@ -9,7 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Styles\" />
+    <None Include="wwwroot\Images\fondo-ternium.png" />
+    <None Include="wwwroot\Images\LogoTerniumBlanco.png" />
+    <None Include="wwwroot\Images\LogoTerniumTransparente.png" />
   </ItemGroup>
 
 </Project>
