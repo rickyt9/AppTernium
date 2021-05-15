@@ -5,6 +5,23 @@
     border-bottom-left-radius: 500px;
 }
 
+.btn-leaderboard {
+    border-width: 1px;
+    padding: 0.8em 1em;
+}
+
+.btn-active {
+    background-color: #FF3900;
+    border-color: #FF3900;
+    color: white;
+}
+
+.btn-inactive {
+    background-color: transparent;
+    border-color: #FF3900;
+    color: #FF3900;
+}
+
 .btn-right {
     border-top-right-radius: 500px;
     border-bottom-right-radius: 500px;
