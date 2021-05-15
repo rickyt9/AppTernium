@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="~/css/navbarStyles.css"/>
     <link rel="stylesheet" href="~/css/fonts/font.css" />
 </head>
-<body>
-    <header class="tradeFont">
+<body class="tradeFont">
+    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-0 main-nav">
             <div class="container d-flex align-items-center justify-content-between">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                <a class="navbar-brand" asp-area="" asp-page="#">
                     <img src="~/Images/LogoTerniumBlanco.png" width="100" class="d-inline-block align-text-top" />
                 </a>
 
@@ -31,7 +31,7 @@
                             <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Entrenar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Leaderboard</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Leaderboard">Leaderboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Medallas</a>
@@ -58,7 +58,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-white footer-style p-1">
+    <footer class="footer text-white footer-style p-2">
         <div class="container d-flex justify-content-between">
             <label>Más información</label>
             <label>Asistente de Entrenamiento de Inspector</label>

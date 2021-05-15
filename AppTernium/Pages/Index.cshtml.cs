@@ -49,7 +49,7 @@ namespace AppTernium.Pages {
                 responseContent = await response.Content.ReadAsStringAsync();
             }
 
-            return RedirectToPage("Response", new { result = responseContent });
+            return RedirectToPage("Leaderboard", new { result = responseContent });
         }
     }
 }

@@ -16,7 +16,12 @@ namespace AppTernium.Pages {
     public class LeaderboardModel : PageModel {
 
         private string ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.VGVjRXF1aXBvMg.lCVu27kFHVurwY77sD7wWepNLuxyD7GrcK2sJd4KDg4";
-        public async Task<IActionResult> OnGet() {
+        List<Score> scores = new List<Score>();
+
+        [BindProperty]
+        public string responseGet { get; set; }
+
+        public async void OnGet() {
             string responseContent = "[]";
 
             // Buscamos el recurso
@@ -24,15 +29,16 @@ namespace AppTernium.Pages {
 
             // Creamos el cliente para que haga nuestra peticion
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("auth_key", ACCESS_TOKEN);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(ACCESS_TOKEN);
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
+                responseGet = responseContent;
+            } else {
+                responseGet = "Hubo un error";
             }
-
-            return RedirectToPage("Response", new { result = responseContent });
         }
 
     }
