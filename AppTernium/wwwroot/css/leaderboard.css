@@ -1,0 +1,11 @@
+﻿
+
+.btn-left {
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+}
+
+.btn-right {
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+}
