@@ -11,11 +11,10 @@
 </head>
 <body>
     <header class="tradeFont">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-0 main-nav">
-            <div class="container">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-0 main-nav">
+            <div class="d-flex align-items-center justify-content-between">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <img src="~/Images/LogoTerniumBlanco.png" width="100" class="d-inline-block align-text-top" />
-                    @*AppTernium*@
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -42,10 +41,15 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="">
+                    <label>Username</label>
+                </div>
+
             </div>
         </nav>
 
-        <div class="container-fluid yellow-bar mt-0"></div>
+        <div class="container-fluid box-shadow yellow-bar mt-0"></div>
     </header>
 
     <div class="container">
