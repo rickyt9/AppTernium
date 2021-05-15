@@ -8,3 +8,7 @@
     height: 4px;
 }
 
+.footer-style {
+    background-color: #05101D;
+    line-height: unset;
+}
