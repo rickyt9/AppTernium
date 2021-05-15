@@ -6,17 +6,16 @@
     <title>@ViewData["Title"] - AppTernium</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/navbarStyles.css"/>
+    <link rel="stylesheet" href="~/css/fonts/font.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-
-
+    <header class="tradeFont">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-0 main-nav">
             <div class="container">
-
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <img src="~/Images/LogoTerniumBlanco.png" width="100" class="d-inline-block align-text-top" />
-                    AppTernium
+                    @*AppTernium*@
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -24,34 +23,31 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between font-weight-bold">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Examenes</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Index">Examenes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Entrenar</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Entrenar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Leaderboard</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Leaderboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Medallas</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Medallas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Indicadores</a>
+                            <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Indicadores</a>
                         </li>
                     </ul>
                 </div>
-
-
             </div>
-
-            <div class="container-fluid yellow-bar"></div>
-
-
         </nav>
+
+        <div class="container-fluid yellow-bar mt-0"></div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
