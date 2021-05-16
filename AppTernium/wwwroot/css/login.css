@@ -1,6 +1,6 @@
 ﻿
 .top-header {
-    
+    background-color: transparent;
 }
 
 .main-content {
@@ -15,8 +15,48 @@
     flex-direction: row;
 }
 
+.user-input {
+    width: 20em;
+    height: 2.5em;
+    padding: 0.2em 0.6em;
+    background-color: transparent;
+    border-style: solid;
+    border-color: white;
+    border-width: 0.05em;
+    border-radius: 0.2em;
+    margin-top: 0.1em;
+    margin-bottom: 1.2em;
+}
+
+.user-input::-webkit-input-placeholder {
+    color: white;
+    font-size: 0.8em;
+}
+
+.login-btn {
+    font-size: 0.8em;
+    background-color: white;
+    border-radius: 500px;
+    color: #FF3900;
+    padding: 1em 1em;
+}
+
+.form-heading {
+    color: white;
+    font-size: 1.5em;
+}
+
+.form-label {
+    color: white;
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 0;
+}
+
 .form-style {
     background-image: linear-gradient( 70deg,#f30,#f90);
+    display: inline-block;
+    padding: 1em 2em;
 }
 
 .footer-style {
