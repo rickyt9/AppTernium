@@ -63,3 +63,8 @@
     background-color: #05101D;
     line-height: unset;
 }
+
+.white-border {
+    background-color: transparent;
+    border: 0.1em solid white;
+}

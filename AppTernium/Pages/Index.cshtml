@@ -23,7 +23,6 @@
                 <a class="navbar-brand" asp-area="" asp-page="#">
                     <img src="~/Images/LogoTerniumBlanco.png" width="100" class="d-inline-block align-text-top" />
                 </a>
-
                 <div class="d-flex font-weight-bold">
                     <ul class="navbar-nav nav-style">
                         <li class="nav-item">
@@ -40,18 +39,20 @@
 
     <div class="container-fluid main-content">
         <main>
-            <form method="post" class="form-style">
-                <div>
-                    <h3 class="form-heading mb-3">Ingrese a su cuenta</h3>
+            <div class="white-border mx-5">
+                <form method="post" class="form-style">
+                    <div>
+                        <h3 class="form-heading mb-3">Ingrese a su cuenta</h3>
 
-                    <label for="username"class="form-label">Nombre de Usuario</label>
-                    <input asp-for="Usuario.username" placeholder="Nombre de Usuario" id="username" class="user-input d-block"/>
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input asp-for="Usuario.password" placeholder="Contraseña" class="user-input d-block"/>
-                    <input id="btnLogin" class="btn login-btn font-weight-bold" type="submit" value="INGRESAR" />
-                    <label>@Model.Mensaje</label>
-                </div>
-            </form>
+                        <label for="username" class="form-label">Nombre de Usuario</label>
+                        <input asp-for="Usuario.username" placeholder="Nombre de Usuario" id="username" class="user-input d-block" />
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input asp-for="Usuario.password" placeholder="Contraseña" class="user-input d-block" />
+                        <input id="btnLogin" class="btn login-btn font-weight-bold" type="submit" value="INGRESAR" />
+                        <label>@Model.Mensaje</label>
+                    </div>
+                </form>
+            </div>
         </main>
     </div>
 
