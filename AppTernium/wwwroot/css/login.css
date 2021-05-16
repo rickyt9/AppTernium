@@ -1,0 +1,13 @@
+﻿
+.top-header {
+    background-color: lightgray;
+}
+
+.nav-style {
+    flex-direction: row;
+}
+
+.footer-style {
+    background-color: #05101D;
+    line-height: unset;
+}

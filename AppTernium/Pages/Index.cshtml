@@ -2,13 +2,68 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    Layout = null;
 }
 
-<form method="post">
-    <div>
-        Usuario: <input asp-for="Usuario.username" /><br /><br />
-        Contraseña: <input asp-for="Usuario.password"/><br /><br />
-        <input id="btnLogin" type="submit" value="Login"/>
-        <label>@Model.Mensaje</label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AppTernium</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/fonts/font.css" />
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+<body class="tradeFont">
+    <header>
+        <nav class="navbar mb-0 top-header">
+            <div class="container d-flex align-items-center justify-content-between">
+                <a class="navbar-brand" asp-area="" asp-page="#">
+                    <img src="~/Images/LogoTerniumBlanco.png" width="100" class="d-inline-block align-text-top" />
+                </a>
+
+                <div class="d-flex font-weight-bold">
+                    <ul class="navbar-nav nav-style">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Contáctenos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <form method="post">
+                <div>
+                    Usuario: <input asp-for="Usuario.username" /><br /><br />
+                    Contraseña: <input asp-for="Usuario.password" /><br /><br />
+                    <input id="btnLogin" type="submit" value="Login" />
+                    <label>@Model.Mensaje</label>
+                </div>
+            </form>
+        </main>
     </div>
-</form>
+
+    <footer class="footer text-white footer-style p-4">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div>
+                <label>FAQ</label>
+                <label>Contáctenos</label>
+            </div>
+            <img src="~/Images/iconoNegro.png" width="100" />
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
+
