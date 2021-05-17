@@ -77,3 +77,15 @@
     background-color: transparent;
     border: 0.1em solid white;
 }
+
+.text-div {
+    width: 70%;
+}
+
+.secondary-text {
+    font-size: 2em;
+}
+
+.main-text {
+    font-size: 3.5em;
+}
