@@ -11,23 +11,12 @@
 
     <h1 class="display-4 font-weight-bolder">TABLA DE CLASIFICACIÓN</h1>
 
-    <select class="form-select" onchange="parentNode.submit();" aria-label="Default select example">
-        <option selected>SEMANAL</option>
-        <option value="1">MENSUAL</option>
-        <option value="2">GLOBAL</option>
-    </select>
-
-    <div class="btn-group">
-        <button type="button" class="btn btn-outline-dark btn-leaderboard dropdown-toggle rounded-pill font-weight-bold" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-            SEMANAL
-        </button>
-
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Semanal</a>
-            <a class="dropdown-item" href="#">Mensual</a>
-            <a class="dropdown-item" href="#">Global</a>
-        </div>
+    <div class="form-group">
+        <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
+            <option>SEMANAL</option>
+            <option>MENSUAL</option>
+            <option>GLOBAL</option>
+        </select>
     </div>
 
 </div>
