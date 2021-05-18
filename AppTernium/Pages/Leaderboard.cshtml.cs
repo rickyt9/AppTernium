@@ -29,7 +29,7 @@ namespace AppTernium.Pages {
 
             // Creamos el cliente para que haga nuestra peticion
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(ACCESS_TOKEN);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("auth_key", ACCESS_TOKEN);
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
 
