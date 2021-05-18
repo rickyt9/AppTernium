@@ -4,26 +4,19 @@
 }
 
 <div class="container d-flex align-items-center justify-content-between mt-5 mb-4">
-    <div class="row align-items-center">
+    <div class="btn-group btn-group-toggle">
+        <button type="button" class="btn btn-inactive btn-left btn-leaderboard font-weight-bold">EXAMEN</button>
+        <button type="button" class="btn btn-active btn-right btn-leaderboard font-weight-bold">PRÁCTICA</button>
+    </div>
 
-        <div class="col-md-3">
-            <div class="btn-group" role="group" aria-label="Filter of leaderboard">
-                <button type="button" class="btn btn-inactive btn-left btn-leaderboard font-weight-bold">EXAMEN</button>
-                <button type="button" class="btn btn-active btn-right btn-leaderboard font-weight-bold">PRÁCTICA</button>
-            </div>
-        </div>
-        <div class="col-md-7 d-md-block d-sm-none">
-            <h1 class="display-2 font-weight-bolder">TABLA DE CLASIFICACIÓN</h1>
-        </div>
-        <div class="col-md-2">
-            <div class="form-group">
-                <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
-                    <option>SEMANAL</option>
-                    <option>MENSUAL</option>
-                    <option>GLOBAL</option>
-                </select>
-            </div>
-        </div>
+    <h1 class="display-4 font-weight-bolder">TABLA DE CLASIFICACIÓN</h1>
+
+    <div class="form-group">
+        <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
+            <option>SEMANAL</option>
+            <option>MENSUAL</option>
+            <option>GLOBAL</option>
+        </select>
     </div>
 
 </div>
