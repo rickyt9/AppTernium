@@ -26,3 +26,8 @@
     border-top-right-radius: 500px;
     border-bottom-right-radius: 500px;
 }
+
+.table-heading {
+    background-color: rgba(5, 16, 29, 0.8) !important;
+    color: #FFAD3D !important;
+}
