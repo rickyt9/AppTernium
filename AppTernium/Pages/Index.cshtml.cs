@@ -10,6 +10,7 @@ using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using AppTernium.Models;
+using MySql.Data.MySqlClient;
 
 namespace AppTernium.Pages {
     public class IndexModel : PageModel {
@@ -30,13 +31,9 @@ namespace AppTernium.Pages {
         public async Task<IActionResult> OnPost() {
             string responseContent = "[]";
 
-            // Buscamos el recurso
             Uri baseURL = new Uri("https://chatarrap-api.herokuapp.com/users/login");
-
-            // Creamos el cliente para que haga nuestra peticion
             HttpClient client = new HttpClient();
 
-            // Armamos nuestra peticion
             JObject joPeticion = new JObject();
             joPeticion.Add("username", Usuario.username);
             joPeticion.Add("password", Usuario.password);
@@ -47,9 +44,26 @@ namespace AppTernium.Pages {
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
+                InsertUserLogToDb(Usuario);
             }
 
             return RedirectToPage("Leaderboard", new { result = responseContent });
+        }
+
+        public void InsertUserLogToDb(Login user) {
+            // Insertar en base de datos
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=bd_ternium;Uid=root;password=12Junio1998";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            string sql = "INSERT INTO bitacoralogin(username,fechaEntrada) VALUES (@username, @fechaEntrada)";
+            using var cmd = new MySqlCommand(sql, connection);
+
+            cmd.Parameters.AddWithValue("@username", user.username);
+            cmd.Parameters.AddWithValue("@fechaEntrada", DateTime.Now.Date);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
         }
     }
 }
