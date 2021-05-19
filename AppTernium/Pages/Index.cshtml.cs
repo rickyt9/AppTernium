@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 using System.Web;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Text;
 using AppTernium.Models;
 using MySql.Data.MySqlClient;
+
 
 namespace AppTernium.Pages {
     public class IndexModel : PageModel {
@@ -45,6 +47,9 @@ namespace AppTernium.Pages {
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
                 InsertUserLogToDb(Usuario);
+
+                HttpContext.Session.SetString("username", Usuario.username);
+
                 return RedirectToPage("Leaderboard", new { result = responseContent });
             }
 
