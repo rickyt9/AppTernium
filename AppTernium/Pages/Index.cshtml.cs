@@ -45,12 +45,13 @@ namespace AppTernium.Pages {
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
                 InsertUserLogToDb(Usuario);
+                return RedirectToPage("Leaderboard", new { result = responseContent });
             }
 
-            return RedirectToPage("Leaderboard", new { result = responseContent });
+            return Page();
         }
 
-        public void InsertUserLogToDb(Login user) {
+        private void InsertUserLogToDb(Login user) {
             // Insertar en base de datos
             string connectionString = "Server=127.0.0.1;Port=3306;Database=bd_ternium;Uid=root;password=12Junio1998";
             MySqlConnection connection = new MySqlConnection(connectionString);
