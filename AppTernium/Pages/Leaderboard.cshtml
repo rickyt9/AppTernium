@@ -33,7 +33,7 @@
         </thead>
         <tbody>
             @{ 
-                if (Model != null) {
+                if (Model.scores != null) {
                     int position = 1;
                     foreach (JObject score in Model.scores) {
                         <tr>

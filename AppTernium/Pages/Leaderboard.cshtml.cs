@@ -20,19 +20,19 @@ namespace AppTernium.Pages {
 
         public async void OnGet() {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
-            System.Diagnostics.Debug.WriteLine(ACCESS_TOKEN);
 
             string responseContent = "[]";
 
             Uri baseURL = new Uri("https://chatarrap-api.herokuapp.com/attempts/scores");
 
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(ACCESS_TOKEN);
+            client.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
+                System.Diagnostics.Debug.WriteLine(responseContent);
                 scores = JArray.Parse(responseContent);                
             } else {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
