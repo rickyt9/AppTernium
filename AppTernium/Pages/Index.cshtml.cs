@@ -46,9 +46,12 @@ namespace AppTernium.Pages {
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
+                JObject result = JObject.Parse(responseContent);
+
                 InsertUserLogToDb(Usuario);
 
                 HttpContext.Session.SetString("username", Usuario.username);
+                HttpContext.Session.SetString("token", result.Value<string>("token"));
 
                 return RedirectToPage("Leaderboard", new { result = responseContent });
             }
