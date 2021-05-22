@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AppTernium</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/navbarStyles.css"/>
+    <link rel="stylesheet" href="~/css/navbarStyles.css" />
     <link rel="stylesheet" href="~/css/fonts/font.css" />
     <link rel="stylesheet" href="~/css/leaderboard.css" />
 </head>
@@ -28,22 +29,24 @@
                         <a class="nav-link text-white" asp-area="" asp-page="/Exams"><i class="fas fa-stream"></i>  Examenes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Entrenar</a>
+                        <a class="nav-link text-white" asp-area="" asp-page="/Privacy"><i class="fas fa-dumbbell"></i>  Entrenar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-page="/Leaderboard">Leaderboard</a>
+                        <a class="nav-link text-white" asp-area="" asp-page="/Leaderboard"><i class="fas fa-trophy"></i>  Leaderboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Medallas</a>
+                        <a class="nav-link text-white" asp-area="" asp-page="/Profile">Medallas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" asp-area="" asp-page="/Privacy">Indicadores</a>
+                        <a class="nav-link text-white" asp-area="" asp-page="/Privacy"><i class="fas fa-chart-line"></i>  Indicadores</a>
                     </li>
                 </ul>
             </div>
 
             <div class="d-flex align-items-center">
-                <p>Marco del Valle</p>
+                <i class="fas fa-user-circle"></i>
+                <span class="mx-2">Marco del Valle</span>
+                <i class="fas fa-angle-down"></i>
             </div>
         </nav>
 
