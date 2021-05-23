@@ -1,3 +1,42 @@
-﻿#user-image {
-    font-size: 50em;
+﻿.streak-num {
+    font-size: 6em;
+}
+
+.streak-border {
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    background-image: linear-gradient( 70deg,#f30,#f90);
+}
+
+.streak-background {
+    background-color: white;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+}
+
+.medal-title {
+    margin-bottom: 0.75rem;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.medal-body {
+    padding: 0.5em;
+    border: 1px solid rgba(0,0,0,.125)
+}
+
+.medal-card {
+    width: 12em;
+}
+
+.medal-text {
+    line-height: 1rem;
+}
+
+.medal-icon {
+    color: #FFDB5C;
+    padding: 1.2rem 0;
+    font-size: 7em;
 }
