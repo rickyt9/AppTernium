@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-active btn-right btn-leaderboard font-weight-bold">PRÁCTICA</button>
     </div>
 
-    <h1 class="display-4 font-weight-bolder">TABLA DE CLASIFICACIÓN</h1>
+    <h1 class="display-4 font-weight-bolder">LEADERBOARD</h1>
 
     <div class="form-group">
         <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
@@ -32,19 +32,27 @@
             </tr>
         </thead>
         <tbody>
-            @{ 
-                if (Model.scores != null) {
-                    int position = 1;
-                    foreach (JObject score in Model.scores) {
-                        <tr>
-                            <td>@position</td>
-                            <td>@score["username"].ToString()</td>
-                            <td>@score["score"].ToString()</td>
-                        </tr>
-                        position++;
-                    }
+            @{
+                int counter = 1;
+                foreach (var item in Model.ListScores)
+                {
+                    <tr>
+                        <td>
+                            @counter
+                        </td>
+                        <td>
+                            @item.username
+                        </td>
+                        <td>
+                            @item.score
+                        </td>
+                    </tr>
+                    counter = counter + 1;
                 }
+
             }
         </tbody>
     </table>
 </div>
+
+<p>@Model.test</p>
