@@ -7,7 +7,11 @@
 }
 
 .top-nav {
-    width: 10vw;
+    width: 8rem;
+}
+
+.header-logo {
+    width: 8rem;
 }
 
 .user-input {
@@ -73,13 +77,13 @@
 }
 
 .text-div {
-    width: 70%;
+    width: 65vw;
 }
 
 .secondary-text {
-    font-size: 2em;
+    font-size: 2vw;
 }
 
 .main-text {
-    font-size: 3.5em;
+    font-size: 3.5vw;
 }

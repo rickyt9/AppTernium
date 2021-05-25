@@ -3,6 +3,10 @@
     color: white;
 }
 
+.ternium-logo {
+    width: 8rem;
+}
+
 .yellow-bar {
     background-color: #FFAD3D;
     height: 4px;
@@ -11,4 +15,8 @@
 .footer-style {
     background-color: #05101D;
     line-height: unset;
+}
+
+.active-user {
+    padding: 0.5rem 0.2rem;
 }

@@ -1,0 +1,23 @@
+﻿.check-wrap {
+    background-color: white;
+    border: none;
+}
+
+.exam-item {
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 0.5rem 2rem;
+}
+
+.closure-time {
+    margin: 0 3rem 0 0.5rem;
+}
+
+.closure-time p {
+    margin-bottom: 0;
+}
+
+.attempt-count {
+    margin-right: 0.5rem;
+    font-size: 1.75em;
+}

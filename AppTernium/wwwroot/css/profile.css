@@ -1,19 +1,50 @@
-﻿.streak-num {
-    font-size: 6em;
+﻿.user-image {
+    font-size: 14em;
+}
+
+.user-data {
+    font-size: 1.75rem;
+}
+
+.user-info {
+    font-size: 1.5em;
+}
+
+.type-list {
+    list-style: none;
 }
 
 .streak-border {
-    width: 8em;
-    height: 8em;
+    width: 12em;
+    height: 12em;
     border-radius: 50%;
     background-image: linear-gradient( 70deg,#f30,#f90);
 }
 
 .streak-background {
     background-color: white;
-    width: 90%;
-    height: 90%;
+    width: 85%;
+    height: 85%;
     border-radius: 50%;
+}
+
+.streak-num {
+    font-size: 8em;
+}
+
+.medal-card {
+    width: 12em;
+}
+
+.medal-icon {
+    color: #FFDB5C;
+    padding: 1.2rem 0;
+    font-size: 7em;
+}
+
+.medal-body {
+    padding: 0.5em;
+    border: 1px solid rgba(0,0,0,.125)
 }
 
 .medal-title {
@@ -22,21 +53,7 @@
     font-weight: 700;
 }
 
-.medal-body {
-    padding: 0.5em;
-    border: 1px solid rgba(0,0,0,.125)
-}
-
-.medal-card {
-    width: 12em;
-}
-
 .medal-text {
     line-height: 1rem;
 }
 
-.medal-icon {
-    color: #FFDB5C;
-    padding: 1.2rem 0;
-    font-size: 7em;
-}
