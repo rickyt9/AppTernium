@@ -34,7 +34,7 @@ namespace AppTernium.Pages
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
             responseContent = await response.Content.ReadAsStringAsync();
-            ListS = JsonConvert.DeserializeObject<List<Exam>>(responseContent);
+            ListExams = JsonConvert.DeserializeObject<List<Exam>>(responseContent);
 
         }
     }
