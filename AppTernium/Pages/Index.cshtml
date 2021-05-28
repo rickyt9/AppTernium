@@ -59,7 +59,7 @@
                         <label for="username" class="form-label">Nombre de Usuario</label>
                         <input asp-for="Usuario.username" placeholder="Nombre de Usuario" id="username" class="user-input d-block" />
                         <label for="password" class="form-label">Contraseña</label>
-                        <input asp-for="Usuario.password" placeholder="Contraseña" class="user-input d-block" />
+                        <input asp-for="Usuario.password" type="password" placeholder="Contraseña" class="user-input d-block" />
                         <input id="btnLogin" class="btn login-btn font-weight-bold" type="submit" value="INGRESAR" />
                         <label>@Model.Mensaje</label>
                     </div>

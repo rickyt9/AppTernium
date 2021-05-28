@@ -19,7 +19,6 @@ namespace AppTernium.Pages {
         [BindProperty]
         public List<Score> ListScores { get; set; }
         private string ACCESS_TOKEN;
-        //public JArray scores = JArray.Parse("[{\"username\": \"alberto\",\"score\": 570},{\"username\": \"borrar\",\"score\": 180},{\"username\": \"UsuarioCalidad\",\"score\": 120}]");
 
         public async Task OnGetAsync() {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
