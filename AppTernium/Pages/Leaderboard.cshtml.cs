@@ -31,22 +31,13 @@ namespace AppTernium.Pages {
             client.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
-            responseContent = await response.Content.ReadAsStringAsync();
-            ListScores = JsonConvert.DeserializeObject<List<Score>>(responseContent);
 
-            if (ListScores == null) {
-                ListScores = new List<Score>();
-            }
-
-            /*if (response.IsSuccessStatusCode) {
+            if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
-                System.Diagnostics.Debug.WriteLine(responseContent);
-                scores = JArray.Parse(responseContent);                
+                ListScores = JsonConvert.DeserializeObject<List<Score>>(responseContent);
             } else {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
-                scores = JArray.Parse("[{\"username\": \"alberto\",\"score\": 570},{\"username\": \"borrar\",\"score\": 180},{\"username\": \"UsuarioCalidad\",\"score\": 120}]");
             }
-            */
         }
 
     }
