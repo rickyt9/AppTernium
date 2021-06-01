@@ -3,7 +3,13 @@
     border: none;
 }
 
+.exam-icon {
+    width: 3em;
+}
+
 .exam-item {
+    display: flex;
+    align-items: center;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     padding: 0.5rem 2rem;
@@ -14,6 +20,9 @@
 }
 
 .closure-time p {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 0;
 }
 

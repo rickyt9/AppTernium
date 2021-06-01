@@ -5,40 +5,35 @@
 
 <div class="container">
 
-    <h4>Exámenes Disponibles</h4>
+    <h4 class="mt-5">Exámenes Disponibles</h4>
     <div>
         <ul class="list-unstyled flex-column">
-            <li class="d-flex align-items-center exam-item">
-                <img src="~/Images/prueba.png" style="width:4em;" />
-                <div class="input-group-text check-wrap">
-                    <input type="checkbox" aria-label="Checkbox for knowing if a user has presented this exam">
-                </div>
-                <span class="flex-grow-1 font-weight-bold" style="font-size:1.5em;">Examen Final</span>
-                <span class="font-weight-bold">Cierre:</span>
-                <div class="d-inline-flex flex-column justify-content-center closure-time">
-                    <p>2021-04-23</p>
-                    <p>16:28</p>
-                </div>
-                <span class="attempt-count">5</span>
-                <span class="font-weight-bold">Intentos</span>
-            </li>
-
             @{
                 foreach (var exam in Model.ListExams) {
-                    <li class="d-flex align-items-center exam-item">
-                        <img src="~/Images/prueba.png" style="width:4em;" />
-                        <div class="input-group-text check-wrap">
-                            <input type="checkbox" aria-label="Checkbox for knowing if a user has presented this exam">
-                        </div>
-                        <span class="flex-grow-1 font-weight-bold" style="font-size:1.5em;">@exam.examName</span>
-                        <span class="font-weight-bold">Cierre:</span>
-                        <div class="d-inline-flex flex-column justify-content-center closure-time">
-                            <p>@exam.dueDate.ToString("MM/dd/yyyy")</p>
-                            <p>@exam.dueDate.ToString("HH:mm")</p>
-                        </div>
-                        <span class="attempt-count">@exam.attempts</span>
-                        <span class="font-weight-bold">Intentos Restantes</span>
-                    </li>
+                        <li class="exam-item">
+                            <div class="container">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-6 d-flex align-items-center">
+                                        <img class="exam-icon" src="~/Images/prueba.png" />
+                                        <div class="input-group-text check-wrap">
+                                            <input type="checkbox" aria-label="Checkbox for knowing if a user has presented this exam">
+                                        </div>
+                                        <span class="flex-grow-1 font-weight-bold" style="font-size:1.5em;">@exam.examName</span>
+                                    </div>
+                                    <div class="col-3 d-flex align-items-center">
+                                        <span class="font-weight-bold">Cierre:</span>
+                                        <div class="closure-time">
+                                            <p>@exam.dueDate.ToString("MM/dd/yyyy")</p>
+                                            <p>@exam.dueDate.ToString("HH:mm")</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="attempt-count">@exam.attempts</span>
+                                        <span class="font-weight-bold">Intentos Restantes</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                 }
             }
         </ul>
