@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+
 
 namespace AppTernium {
     public class Startup {
@@ -37,6 +41,18 @@ namespace AppTernium {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var provider = new FileExtensionContentTypeProvider();
+            // Add new mappings
+            provider.Mappings[".data"] = "application/unityweb";
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")),
+                //RequestPath = "/StaticContentDir",
+                ContentTypeProvider = provider
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
