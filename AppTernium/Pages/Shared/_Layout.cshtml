@@ -58,7 +58,12 @@
 
             <div class="d-flex align-items-center">
                 <i class="fas fa-user-circle fa-2x"></i>
-                <a class="active-user nav-link text-white mx-1" asp-page="/Profile">Marco del Valle</a>
+                @{
+                    var sessionName = new Byte[20];
+                    bool nameOK = Context.Session.TryGetValue("username", out sessionName);
+                    string result = System.Text.Encoding.UTF8.GetString(sessionName);
+                    <a class="active-user nav-link text-white mx-1" asp-page="/Profile">@result</a>
+                }
                 <i class="fas fa-angle-down"></i>
             </div>
         </nav>
