@@ -18,16 +18,27 @@ namespace AppTernium.Pages {
 
         [BindProperty]
         public List<Attempt> ListAttempts { get; set; }
+        public User user { get; set; }
         private string ACCESS_TOKEN;
         private string USERNAME;
+        public string USERID;
         public int examCount;
         public int perfectCount;
 
         public async Task OnGetAsync()
         {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
-            //USERNAME = HttpContext.Session.GetString("username");
-            USERNAME = "alberto";
+            USERNAME = HttpContext.Session.GetString("username");
+            USERID = HttpContext.Session.GetString("userId");
+
+            string responseContent2 = "[]";
+            Uri baseURL2 = new Uri($"https://chatarrap-api.herokuapp.com/users/{USERID}");
+            HttpClient client2 = new HttpClient();
+            client2.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
+            HttpResponseMessage response2 = await client2.GetAsync(baseURL2.ToString());
+            responseContent2 = await response2.Content.ReadAsStringAsync();
+            USERID=responseContent2;
+            user = JsonConvert.DeserializeObject<User>(responseContent2);
 
             string responseContent = "[]";
 
@@ -58,5 +69,6 @@ namespace AppTernium.Pages {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
             }
         }
+
     }
 }

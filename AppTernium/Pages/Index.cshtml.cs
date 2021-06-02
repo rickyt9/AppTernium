@@ -52,6 +52,7 @@ namespace AppTernium.Pages {
 
                 HttpContext.Session.SetString("username", Usuario.username);
                 HttpContext.Session.SetString("token", result.Value<string>("token"));
+                HttpContext.Session.SetString("userId", result.Value<string>("user"));
 
                 return RedirectToPage("Leaderboard", new { result = responseContent });
             }
