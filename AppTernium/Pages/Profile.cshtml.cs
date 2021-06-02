@@ -21,7 +21,7 @@ namespace AppTernium.Pages {
         public User user { get; set; }
         private string ACCESS_TOKEN;
         private string USERNAME;
-        public string USERID;
+        private string USERID;
         public int examCount;
         public int perfectCount;
 
