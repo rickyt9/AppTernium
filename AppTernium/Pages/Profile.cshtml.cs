@@ -12,12 +12,14 @@ using System.Text;
 using AppTernium.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using MySql.Data.MySqlClient;
 
 namespace AppTernium.Pages {
     public class ProfileModel : PageModel {
 
         [BindProperty]
         public List<Attempt> ListAttempts { get; set; }
+        public List<Medal> ListMedals { get; set; }
         public User user { get; set; }
         private string ACCESS_TOKEN;
         private string USERNAME;
@@ -68,6 +70,32 @@ namespace AppTernium.Pages {
             {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
             }
+        }
+
+        private List<Medal> GetMedDB(string username)
+        {
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=bdpeliculas;Uid=root;password=celestials;";
+            MySqlConnection conexion = new MySqlConnection(connectionString);
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conexion;
+            cmd.CommandText = "Select * from Usuarios";
+
+            Medal med = new Medal();
+            ListMedals = new List<Medal>();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    med = new Medal();
+                    med.idMedalla = Convert.ToInt32(reader["idMedalla"]);
+                    med.descripcion = reader["descripcion"].ToString();
+                    ListMedals.Add(med);
+                }
+            }
+            conexion.Dispose();
+            return ListMedals;
         }
 
     }

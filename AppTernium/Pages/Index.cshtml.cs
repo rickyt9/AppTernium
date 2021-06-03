@@ -48,7 +48,7 @@ namespace AppTernium.Pages {
                 responseContent = await response.Content.ReadAsStringAsync();
                 JObject result = JObject.Parse(responseContent);
 
-                //InsertUserLogToDb(Usuario);
+                InsertUserLogToDb(Usuario);
 
                 HttpContext.Session.SetString("username", Usuario.username);
                 HttpContext.Session.SetString("token", result.Value<string>("token"));
@@ -62,11 +62,11 @@ namespace AppTernium.Pages {
 
         private void InsertUserLogToDb(Login user) {
             // Insertar en base de datos
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=bd_ternium;Uid=root;password=12Junio1998";
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=terniumbd;Uid=root;password=celestials;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
-            string sql = "INSERT INTO bitacoralogin(username,fechaEntrada) VALUES (@username, @fechaEntrada)";
+            string sql = "INSERT INTO `terniumbd`.`registros` (`username`,`fecha`) VALUES (@username,now());";
             using var cmd = new MySqlCommand(sql, connection);
 
             cmd.Parameters.AddWithValue("@username", user.username);
