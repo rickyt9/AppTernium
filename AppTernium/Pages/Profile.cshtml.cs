@@ -60,11 +60,16 @@ namespace AppTernium.Pages {
                 {
                     if (a.username != null && a.username == USERNAME) examCount++;
                 }
+
+                ListMedals = GetMedDB(USERNAME);
+
+                /*
                 perfectCount = 0;
                 foreach (Attempt a in ListAttempts)
                 {
                     if (a.correct == a.questions) perfectCount++;
                 }
+                */
             }
             else
             {
@@ -74,13 +79,18 @@ namespace AppTernium.Pages {
 
         private List<Medal> GetMedDB(string username)
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=bdpeliculas;Uid=root;password=celestials;";
+            string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
-            cmd.CommandText = "Select * from Usuarios";
+            cmd.CommandText = $@"SELECT `terniumbd`.`medallausuario`.`idMedalla`, `terniumbd`.`tipomedalla`.`descripcion`, `terniumbd`.`categoriamedalla`.`categoria` 
+FROM `terniumbd`.`medallausuario` 
+join `terniumbd`.`tipomedalla` ON `terniumbd`.`medallausuario`.`idMedalla` = `terniumbd`.`tipomedalla`.`idMedalla` 
+join `terniumbd`.`categoriamedalla` ON `terniumbd`.`tipomedalla`.`idCategoria` = `terniumbd`.`categoriamedalla`.`idCategoria`
+Where `terniumbd`.`medallausuario`.`username` = @username";
+            cmd.Parameters.AddWithValue("@username", username);
 
             Medal med = new Medal();
             ListMedals = new List<Medal>();
@@ -91,6 +101,7 @@ namespace AppTernium.Pages {
                     med = new Medal();
                     med.idMedalla = Convert.ToInt32(reader["idMedalla"]);
                     med.descripcion = reader["descripcion"].ToString();
+                    med.categoria = reader["categoria"].ToString();
                     ListMedals.Add(med);
                 }
             }

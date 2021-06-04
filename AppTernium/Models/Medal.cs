@@ -9,5 +9,6 @@ namespace AppTernium.Models
     {
         public int idMedalla { get; set; }
         public string descripcion { get; set; }
+        public string categoria { get; set; }
     }
 }
