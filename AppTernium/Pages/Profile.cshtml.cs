@@ -87,6 +87,7 @@ namespace AppTernium.Pages {
             Medal med = new Medal();
 
             string line;
+            //cambia path
             string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
             StreamReader file = new StreamReader(path);
             while ((line = file.ReadLine()) != null)
