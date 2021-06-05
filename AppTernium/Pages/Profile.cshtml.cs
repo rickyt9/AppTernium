@@ -13,6 +13,7 @@ using AppTernium.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace AppTernium.Pages {
     public class ProfileModel : PageModel {
@@ -20,12 +21,14 @@ namespace AppTernium.Pages {
         [BindProperty]
         public List<Attempt> ListAttempts { get; set; }
         public List<Medal> ListMedals { get; set; }
+        public List<Medal> ListAllMedals { get; set; }
         public User user { get; set; }
         private string ACCESS_TOKEN;
         private string USERNAME;
         private string USERID;
         public int examCount;
         public int perfectCount;
+        public string testing;
 
         public async Task OnGetAsync()
         {
@@ -39,7 +42,7 @@ namespace AppTernium.Pages {
             client2.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
             HttpResponseMessage response2 = await client2.GetAsync(baseURL2.ToString());
             responseContent2 = await response2.Content.ReadAsStringAsync();
-            USERID=responseContent2;
+            //USERID=responseContent2;
             user = JsonConvert.DeserializeObject<User>(responseContent2);
 
             string responseContent = "[]";
@@ -62,6 +65,7 @@ namespace AppTernium.Pages {
                 }
 
                 ListMedals = GetMedDB(USERNAME);
+                ListAllMedals = GetAllMedals();
 
                 /*
                 perfectCount = 0;
@@ -77,6 +81,29 @@ namespace AppTernium.Pages {
             }
         }
 
+        private List<Medal> GetAllMedals()
+        {
+            List<Medal> ListM = new List<Medal>();
+            Medal med = new Medal();
+
+            string line;
+            string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
+            StreamReader file = new StreamReader(path);
+            while ((line = file.ReadLine()) != null)
+            {
+                med = new Medal();
+                string[] subs = line.Split(',');
+                med.idTipo = Convert.ToInt32(subs[0]);
+                med.descripcion = subs[1];
+                med.categoria = subs[2];
+                med.idCategoria = Convert.ToInt32(subs[3]);
+                ListM.Add(med);
+            }
+            file.Close();
+
+            return ListM;
+        }
+
         private List<Medal> GetMedDB(string username)
         {
             string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
@@ -85,28 +112,29 @@ namespace AppTernium.Pages {
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
-            cmd.CommandText = $@"SELECT `terniumbd`.`medallausuario`.`idMedalla`, `terniumbd`.`tipomedalla`.`descripcion`, `terniumbd`.`categoriamedalla`.`categoria` 
+            cmd.CommandText = $@"SELECT `terniumbd`.`medallausuario`.`fechaDeObtencion`, `terniumbd`.`medallausuario`.`idTipo`, `terniumbd`.`tipomedalla`.`descripcion`, `terniumbd`.`categoriamedalla`.`categoria` 
 FROM `terniumbd`.`medallausuario` 
-join `terniumbd`.`tipomedalla` ON `terniumbd`.`medallausuario`.`idMedalla` = `terniumbd`.`tipomedalla`.`idMedalla` 
+join `terniumbd`.`tipomedalla` ON `terniumbd`.`medallausuario`.`idTipo` = `terniumbd`.`tipomedalla`.`idTipo` 
 join `terniumbd`.`categoriamedalla` ON `terniumbd`.`tipomedalla`.`idCategoria` = `terniumbd`.`categoriamedalla`.`idCategoria`
-Where `terniumbd`.`medallausuario`.`username` = @username";
+Where `terniumbd`.`medallausuario`.`username` = @username;";
             cmd.Parameters.AddWithValue("@username", username);
 
             Medal med = new Medal();
-            ListMedals = new List<Medal>();
+            List<Medal> ListM = new List<Medal>();
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     med = new Medal();
-                    med.idMedalla = Convert.ToInt32(reader["idMedalla"]);
+                    med.fechaDeObtencion = reader["fechaDeObtencion"].ToString();
+                    med.idTipo = Convert.ToInt32(reader["idTipo"]);
                     med.descripcion = reader["descripcion"].ToString();
                     med.categoria = reader["categoria"].ToString();
-                    ListMedals.Add(med);
+                    ListM.Add(med);
                 }
             }
             conexion.Dispose();
-            return ListMedals;
+            return ListM;
         }
 
     }
