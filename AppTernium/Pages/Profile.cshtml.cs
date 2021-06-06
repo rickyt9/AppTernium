@@ -34,6 +34,7 @@ namespace AppTernium.Pages {
         {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
             USERNAME = HttpContext.Session.GetString("username");
+            //USERNAME = "alberto";
             USERID = HttpContext.Session.GetString("userId");
 
             string responseContent2 = "[]";
@@ -42,7 +43,6 @@ namespace AppTernium.Pages {
             client2.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
             HttpResponseMessage response2 = await client2.GetAsync(baseURL2.ToString());
             responseContent2 = await response2.Content.ReadAsStringAsync();
-            //USERID=responseContent2;
             user = JsonConvert.DeserializeObject<User>(responseContent2);
 
             string responseContent = "[]";
@@ -57,23 +57,21 @@ namespace AppTernium.Pages {
             if (response.IsSuccessStatusCode)
             {
                 responseContent = await response.Content.ReadAsStringAsync();
-                ListAttempts = JsonConvert.DeserializeObject<List<Attempt>>(responseContent);
-                examCount = 0;
-                foreach (Attempt a in ListAttempts)
+                List<Attempt> ListA = JsonConvert.DeserializeObject<List<Attempt>>(responseContent);
+                ListAttempts = new List<Attempt>();
+                foreach (Attempt a in ListA)
                 {
-                    if (a.username != null && a.username == USERNAME) examCount++;
+                    if (a.username != null && a.username == USERNAME) ListAttempts.Add(a);
                 }
 
                 ListMedals = GetMedDB(USERNAME);
                 ListAllMedals = GetAllMedals();
 
-                /*
-                perfectCount = 0;
-                foreach (Attempt a in ListAttempts)
-                {
-                    if (a.correct == a.questions) perfectCount++;
-                }
-                */
+                if (ListAttempts != null) CheckForMedals();
+
+                
+
+
             }
             else
             {
@@ -138,5 +136,55 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
             return ListM;
         }
 
+        private void CheckForMedals()
+        {
+            examCount = ListAttempts.Count;
+
+            perfectCount = 0;
+            foreach (Attempt a in ListAttempts)
+            {
+                if (a.correct == a.questions) perfectCount++;
+            }
+
+            List<int> MedalsDB = new List<int>();
+            if (examCount >= 5) MedalsDB.Add(1);
+            if (examCount >= 10) MedalsDB.Add(2);
+            if (examCount >= 50) MedalsDB.Add(3);
+            if (examCount >= 100) MedalsDB.Add(4);
+            if (perfectCount >= 5) MedalsDB.Add(5);
+            if (perfectCount >= 10) MedalsDB.Add(6);
+            if (perfectCount >= 50) MedalsDB.Add(7);
+            if (perfectCount >= 100) MedalsDB.Add(8);
+
+            InsertMedalsDB(MedalsDB);
+
+        }
+
+        private void InsertMedalsDB(List<int> MedalsDB)
+        {
+            if (MedalsDB != null)
+            {
+                string connectionString = "Server=127.0.0.1;Port=3306;Database=terniumbd;Uid=root;password=celestials;";
+                MySqlConnection connection = new MySqlConnection(connectionString);
+                connection.Open();
+
+                //string sql = "INSERT INTO `terniumbd`.`registros` (`username`,`fecha`) VALUES (@username,now());";
+                string sql = "INSERT INTO `terniumbd`.`medallausuario` (`username`, `fechaDeObtencion`,`idTipo`) VALUES (@username, now(), @tipo);";
+                using var cmd = new MySqlCommand(sql, connection);
+
+                foreach (int m in MedalsDB)
+                {
+                    if (ListMedals != null && !ListMedals.Exists(x => x.idTipo == m))
+                    {
+                        cmd.Parameters.AddWithValue("@username", USERNAME);
+                        cmd.Parameters.AddWithValue("@tipo", m);
+
+                        cmd.Prepare();
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
     }
 }
