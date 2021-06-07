@@ -68,3 +68,25 @@ body {
   width: 100%;
   white-space: nowrap; /* Vertically center the text there */
 }
+
+div#gameContainer {
+    background: transparent !important;
+    position: absolute;
+}
+
+    div#gameContainer canvas {
+        position: absolute;
+    }
+
+        div#gameContainer canvas[data-pixel-art="true"] {
+            position: absolute;
+            image-rendering: optimizeSpeed;
+            image-rendering: -webkit-crisp-edges;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: optimize-contrast;
+            image-rendering: pixelated;
+            -ms-interpolation-mode: nearest-neighbor;
+        }
