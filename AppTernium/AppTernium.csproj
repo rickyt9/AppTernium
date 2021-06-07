@@ -16,4 +16,8 @@
     <None Include="wwwroot\Images\LogoTerniumTransparente.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Resources\" />
+  </ItemGroup>
+
 </Project>
