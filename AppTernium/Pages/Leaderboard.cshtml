@@ -12,13 +12,14 @@
 
     <h1 class="display-4 font-weight-bolder">LEADERBOARD</h1>
 
-    <div class="form-group">
-        <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
-            <option>SEMANAL</option>
-            <option>MENSUAL</option>
-            <option>GLOBAL</option>
+    <form class="form-group" method="post" asp-page-handler="MyMethod">
+        <select id="myDrpDown" name="myDrpDown" class="form-control rounded-pill font-weight-bold" asp-for="selectedFilter" onchange="this.form.submit();">
+            <option selected disabled hidden>Elige Tiempo</option>
+            <option value="S">SEMANAL</option>
+            <option value="M">MENSUAL</option>
+            <option value="G">GLOBAL</option>
         </select>
-    </div>
+    </form>
 
 </div>
 
