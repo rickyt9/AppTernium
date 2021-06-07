@@ -10,13 +10,14 @@
         <button type="button" class="btn btn-active btn-right btn-leaderboard font-weight-bold">PRÁCTICA</button>
     </div>
 
-    <h1 class="display-4 font-weight-bolder">@Model.test</h1>
+    <h1 class="display-4 font-weight-bolder">LEADERBOARD</h1>
 
     <form class="form-group" method="post" asp-page-handler="MyMethod">
-        <select class="form-control rounded-pill font-weight-bold"
-                asp-for="selectedFilter"
-                asp-items="Model.Options"
-                onchange="this.form.submit();">
+        <select id="myDrpDown" name="myDrpDown" class="form-control rounded-pill font-weight-bold" asp-for="selectedFilter" onchange="this.form.submit();">
+            <option selected disabled hidden>Elige Tiempo</option>
+            <option value="S">SEMANAL</option>
+            <option value="M">MENSUAL</option>
+            <option value="G">GLOBAL</option>
         </select>
     </form>
 

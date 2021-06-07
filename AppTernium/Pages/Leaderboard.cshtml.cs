@@ -21,29 +21,41 @@ namespace AppTernium.Pages {
         public List<Score> ListScores { get; set; }
         private string ACCESS_TOKEN;
         public string selectedFilter { get; set; }
-        public List<SelectListItem> Options { get; set; }
-        public string test { get; set; }
 
-        public async Task OnGetAsync() {
-
-            this.Options = new List<SelectListItem> {
-                    new SelectListItem { Text = "SEMANAL", Value = "1" },
-                    new SelectListItem { Text = "MENSUAL", Value = "2" },
-                    new SelectListItem { Text = "GLOBAL", Value = "3" },
-                };
-            selectedFilter = "1";
-
+        public async Task OnGetAsync(string result) {
 
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
 
             string responseContent = "[]";
+            string url;
 
-            Uri baseURL = new Uri("https://chatarrap-api.herokuapp.com/attempts/scores");
+            if (result == null)
+            {
+                url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+            }
+            else
+            {
+                switch (result)
+                {
+                    case "S":
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+                        break;
+                    case "M":
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scores";
+                        break;
+                    case "G":
+                        url = "https://chatarrap-api.herokuapp.com/attempts";
+                        break;
+                    default:
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek/";
+                        break;
+                }
+            }
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
 
-            HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
@@ -53,14 +65,10 @@ namespace AppTernium.Pages {
             }
         }
 
-        //public async Task<IActionResult> OnPost()
         public IActionResult OnPostMyMethod()
         {
+            selectedFilter = Request.Form["myDrpDown"];
 
-            if (Options[0].Selected) selectedFilter = Options[0].Value;
-            if (Options[1].Selected) selectedFilter = Options[1].Value;
-            if (Options[2].Selected) selectedFilter = Options[2].Value;
-            test = selectedFilter;
             return RedirectToPage("Leaderboard", new { result = selectedFilter });
         }
 
