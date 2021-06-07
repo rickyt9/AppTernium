@@ -56,7 +56,10 @@ namespace AppTernium.Pages {
         //public async Task<IActionResult> OnPost()
         public IActionResult OnPostMyMethod()
         {
-            selectedFilter = "2";
+
+            if (Options[0].Selected) selectedFilter = Options[0].Value;
+            if (Options[1].Selected) selectedFilter = Options[1].Value;
+            if (Options[2].Selected) selectedFilter = Options[2].Value;
             test = selectedFilter;
             return RedirectToPage("Leaderboard", new { result = selectedFilter });
         }
