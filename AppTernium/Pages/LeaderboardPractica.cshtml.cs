@@ -16,22 +16,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using MySql.Data.MySqlClient;
 
 
-namespace AppTernium.Pages
-{
-    public class LeaderboardPracticaModel : PageModel
-    {
+namespace AppTernium.Pages {
+    public class LeaderboardPracticaModel : PageModel {
+        private const string DB_USER_ID = "root";
+        private const string DB_PASSWORD = "12Junio1998";
+
         [BindProperty]
         public List<Score> ListaScore { get; set; }
         public string selectedFilter { get; set; }
 
-        public void OnGet(string result)
-        {
+        public void OnGet(string result) {
             ListaScore = GetScoresDB(result);
         }
 
-        private List<Score> GetScoresDB(String result)
-        {
-            string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
+        private List<Score> GetScoresDB(String result) {
+            string connectionString = $"Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = {DB_USER_ID}; password = {DB_PASSWORD};";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
@@ -39,14 +38,10 @@ namespace AppTernium.Pages
             cmd.Connection = conexion;
             string cmdTxt;
 
-            if (result == null)
-            {
+            if (result == null) {
                 cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
-            }
-            else
-            {
-                switch (result)
-                {
+            } else {
+                switch (result) {
                     case "S":
                         cmdTxt = @"SELECT * FROM terniumbd.partida
                                 WHERE  YEARWEEK(`fecha`, 1) = YEARWEEK(CURDATE(), 1)
@@ -72,10 +67,8 @@ namespace AppTernium.Pages
 
             Score scr = new Score();
             List<Score> ListaS = new List<Score>();
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
+            using (var reader = cmd.ExecuteReader()) {
+                while (reader.Read()) {
                     scr = new Score();
                     scr.username = reader["username"].ToString();
                     scr.score = Convert.ToInt32(reader["puntos"]);
@@ -86,8 +79,7 @@ namespace AppTernium.Pages
             return ListaS;
         }
 
-        public IActionResult OnPostMyMethod()
-        {
+        public IActionResult OnPostMyMethod() {
             selectedFilter = Request.Form["myDrpDown"];
 
             return RedirectToPage("LeaderboardPractica", new { result = selectedFilter });
