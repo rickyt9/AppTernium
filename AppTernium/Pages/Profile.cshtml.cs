@@ -86,6 +86,7 @@ namespace AppTernium.Pages {
 
             string line;
             //cambia path
+            //string path = "~/Resources/medallas.txt";
             string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
             StreamReader file = new StreamReader(path);
             while ((line = file.ReadLine()) != null)

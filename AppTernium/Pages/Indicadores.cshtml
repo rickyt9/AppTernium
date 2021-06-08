@@ -14,12 +14,13 @@
                 <th class="px-4">Rango</th>
                 <th class="">Username</th>
                 <th class="px-4">Puntuación</th>
+                <th class="px-4">Intentos</th>
             </tr>
         </thead>
         <tbody>
             @{
                 int counter = 1;
-                foreach (var item in Model.ListScores)
+                foreach (var item in Model.ListAttempts)
                 {
                     <tr>
                         <td>
@@ -42,6 +43,9 @@
                         </td>
                         <td>
                             @item.score
+                        </td>
+                        <td>
+                            @item.attempt
                         </td>
                     </tr>
                     counter = counter + 1;

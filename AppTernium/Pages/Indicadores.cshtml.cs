@@ -19,13 +19,16 @@ namespace AppTernium.Pages
     public class IndicadoresModel : PageModel
     {
         [BindProperty]
-        public List<Score> ListScores { get; set; }
+        public List<Attempt> ListAttempts { get; set; }
         private string ACCESS_TOKEN;
+        private string USERNAME;
 
         public async Task OnGetAsync()
         {
 
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
+            //USERNAME = HttpContext.Session.GetString("username");
+            USERNAME = "alberto";
 
             string responseContent = "[]";
             Uri baseURL = new Uri("https://chatarrap-api.herokuapp.com/attempts");
@@ -39,7 +42,15 @@ namespace AppTernium.Pages
             if (response.IsSuccessStatusCode)
             {
                 responseContent = await response.Content.ReadAsStringAsync();
-                ListScores = JsonConvert.DeserializeObject<List<Score>>(responseContent);
+                List<Attempt> ListA = JsonConvert.DeserializeObject<List<Attempt>>(responseContent);
+                ListAttempts = new List<Attempt>();
+                foreach (Attempt a in ListA)
+                {
+                    if (a.username != null && a.username == USERNAME) ListAttempts.Add(a);
+                }
+
+                //ListAttempts.Sort((x, y) => y.fec.CompareTo(x.StoredDate));
+
             }
             else
             {
