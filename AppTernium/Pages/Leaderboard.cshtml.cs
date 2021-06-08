@@ -29,14 +29,10 @@ namespace AppTernium.Pages {
             string responseContent = "[]";
             string url;
 
-            if (result == null)
-            {
+            if (result == null) {
                 url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
-            }
-            else
-            {
-                switch (result)
-                {
+            } else {
+                switch (result) {
                     case "S":
                         url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
                         break;
@@ -65,8 +61,7 @@ namespace AppTernium.Pages {
             }
         }
 
-        public IActionResult OnPostMyMethod()
-        {
+        public IActionResult OnPostMyMethod() {
             selectedFilter = Request.Form["myDrpDown"];
 
             return RedirectToPage("Leaderboard", new { result = selectedFilter });

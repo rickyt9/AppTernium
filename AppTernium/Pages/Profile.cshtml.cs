@@ -17,6 +17,8 @@ using System.IO;
 
 namespace AppTernium.Pages {
     public class ProfileModel : PageModel {
+        private const string DB_USER_ID = "root";
+        private const string DB_PASSWORD = "12Junio1998";
 
         [BindProperty]
         public List<Attempt> ListAttempts { get; set; }
@@ -30,8 +32,7 @@ namespace AppTernium.Pages {
         public int perfectCount;
         public string testing;
 
-        public async Task OnGetAsync()
-        {
+        public async Task OnGetAsync() {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
             USERNAME = HttpContext.Session.GetString("username");
             //USERNAME = "alberto";
@@ -54,13 +55,11 @@ namespace AppTernium.Pages {
 
             HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
 
-            if (response.IsSuccessStatusCode)
-            {
+            if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
                 List<Attempt> ListA = JsonConvert.DeserializeObject<List<Attempt>>(responseContent);
                 ListAttempts = new List<Attempt>();
-                foreach (Attempt a in ListA)
-                {
+                foreach (Attempt a in ListA) {
                     if (a.username != null && a.username == USERNAME) ListAttempts.Add(a);
                 }
 
@@ -68,28 +67,20 @@ namespace AppTernium.Pages {
                 ListAllMedals = GetAllMedals();
 
                 if (ListAttempts != null) CheckForMedals();
-
-                
-
-
-            }
-            else
-            {
+            } else {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
             }
         }
 
-        private List<Medal> GetAllMedals()
-        {
+        private List<Medal> GetAllMedals() {
             List<Medal> ListM = new List<Medal>();
             Medal med = new Medal();
 
             string line;
             //cambia path
-            string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
+            string path = "wwwroot/Resources/medallas.txt";
             StreamReader file = new StreamReader(path);
-            while ((line = file.ReadLine()) != null)
-            {
+            while ((line = file.ReadLine()) != null) {
                 med = new Medal();
                 string[] subs = line.Split(',');
                 med.idTipo = Convert.ToInt32(subs[0]);
@@ -103,9 +94,8 @@ namespace AppTernium.Pages {
             return ListM;
         }
 
-        private List<Medal> GetMedDB(string username)
-        {
-            string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
+        private List<Medal> GetMedDB(string username) {
+            string connectionString = $"Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = {DB_USER_ID}; password = {DB_PASSWORD};";
             MySqlConnection conexion = new MySqlConnection(connectionString);
             conexion.Open();
 
@@ -120,10 +110,8 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
 
             Medal med = new Medal();
             List<Medal> ListM = new List<Medal>();
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
+            using (var reader = cmd.ExecuteReader()) {
+                while (reader.Read()) {
                     med = new Medal();
                     med.fechaDeObtencion = reader["fechaDeObtencion"].ToString();
                     med.idTipo = Convert.ToInt32(reader["idTipo"]);
@@ -136,13 +124,11 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
             return ListM;
         }
 
-        private void CheckForMedals()
-        {
+        private void CheckForMedals() {
             examCount = ListAttempts.Count;
 
             perfectCount = 0;
-            foreach (Attempt a in ListAttempts)
-            {
+            foreach (Attempt a in ListAttempts) {
                 if (a.correct == a.questions) perfectCount++;
             }
 
@@ -157,14 +143,11 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
             if (perfectCount >= 100) MedalsDB.Add(8);
 
             InsertMedalsDB(MedalsDB);
-
         }
 
-        private void InsertMedalsDB(List<int> MedalsDB)
-        {
-            if (MedalsDB != null)
-            {
-                string connectionString = "Server=127.0.0.1;Port=3306;Database=terniumbd;Uid=root;password=celestials;";
+        private void InsertMedalsDB(List<int> MedalsDB) {
+            if (MedalsDB != null) {
+                string connectionString = $"Server=127.0.0.1;Port=3306;Database=terniumbd;Uid={DB_USER_ID};password={DB_PASSWORD};";
                 MySqlConnection connection = new MySqlConnection(connectionString);
                 connection.Open();
 
@@ -172,10 +155,8 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
                 string sql = "INSERT INTO `terniumbd`.`medallausuario` (`username`, `fechaDeObtencion`,`idTipo`) VALUES (@username, now(), @tipo);";
                 using var cmd = new MySqlCommand(sql, connection);
 
-                foreach (int m in MedalsDB)
-                {
-                    if (ListMedals != null && !ListMedals.Exists(x => x.idTipo == m))
-                    {
+                foreach (int m in MedalsDB) {
+                    if (ListMedals != null && !ListMedals.Exists(x => x.idTipo == m)) {
                         cmd.Parameters.AddWithValue("@username", USERNAME);
                         cmd.Parameters.AddWithValue("@tipo", m);
 
@@ -186,5 +167,6 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
                 }
             }
         }
+
     }
 }

@@ -1,9 +1,10 @@
 ﻿.user-image {
-    font-size: 14em;
+    font-size: 14vw;
 }
 
 .user-data {
     font-size: 1.75rem;
+    font-weight: bold;
 }
 
 .user-info {
@@ -14,11 +15,25 @@
     list-style: none;
 }
 
+.streak-style {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.streak-style h5 {
+    font-weight: bold;
+}
+
 .streak-border {
-    width: 12em;
-    height: 12em;
+    width: 12vw;
+    height: 12vw;
     border-radius: 50%;
     background-image: linear-gradient( 70deg,#f30,#f90);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .streak-background {
@@ -29,7 +44,7 @@
 }
 
 .streak-num {
-    font-size: 8em;
+    font-size: 8vw;
 }
 
 .medal-card {
@@ -69,8 +84,8 @@
 
     .card-top .circle {
         position: relative;
-        height: 150px;
-        width: 150px;
+        height: 14vw;
+        width: 14vw;
         border-radius: 50%;
     }
 
@@ -98,3 +113,36 @@
         font-size: 20px;
         font-weight: 500;
     }
+
+    .bar canvas {
+        width: 14vw;
+        height: 14vw;
+    }
+
+/* RESPONSIVIDAD */
+
+@media (max-width: 1200px) {
+    .user-image {
+        font-size: 12em;
+    }
+
+    .user-info {
+        font-size: 1.2em;
+    }
+
+    .user-data {
+        font-size: 1.5em;
+    }
+}
+
+@media(max-width: 768px) {
+    .card-top .circle,
+    .bar canvas {
+        width: 100px;
+        height: 100px;
+    }
+
+    .medal-card {
+        width: 10em;
+    }
+}

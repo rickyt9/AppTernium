@@ -13,16 +13,13 @@ using AppTernium.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 
-namespace AppTernium.Pages
-{
-    public class ExamsModel : PageModel
-    {
+namespace AppTernium.Pages {
+    public class ExamsModel : PageModel {
         [BindProperty]
         public List<Exam> ListExams { get; set; }
         private string ACCESS_TOKEN;
 
-        public async Task OnGetAsync()
-        {
+        public async Task OnGetAsync() {
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
 
             string responseContent = "[]";

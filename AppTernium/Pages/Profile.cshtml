@@ -10,8 +10,8 @@
             <i class="fas fa-user-circle user-image" id="user-image"></i>
         </div>
         <div class="col-6">
-            <p class="mt-3"><span class="user-data font-weight-bolder">Username:</span> <span class="user-info">@Model.user.username</span><p />
-            <h5 class="user-data mt-1 font-weight-bold">Tipo(s) de Usuario</h5>
+            <p class="mt-3"><span class="user-data">Username:</span> <span class="user-info">@Model.user.username</span><p/>
+            <h5 class="user-data mt-1">Tipo(s) de Usuario</h5>
             <ul class="type-list ml-2">
                 @{
                     foreach (var item in Model.user.usertype)
@@ -21,9 +21,9 @@
                 }
             </ul>
         </div>
-        <div class="col-3 d-flex flex-column align-items-center justify-content-start">
-            <h5 class="h2 font-weight-bold">Racha Actual</h5>
-            <div class="streak-border d-flex justify-content-center align-items-center">
+        <div class="col-3 streak-style">
+            <h5 class="h2">Racha Actual</h5>
+            <div class="streak-border">
                 <div class="streak-background d-flex justify-content-center align-items-center">
                     <span class="streak-num font-weight-bolder">@Model.user.streak</span>
                 </div>

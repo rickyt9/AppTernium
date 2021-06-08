@@ -16,6 +16,9 @@ using MySql.Data.MySqlClient;
 
 namespace AppTernium.Pages {
     public class IndexModel : PageModel {
+        private const string DB_USER_ID = "root";
+        private const string DB_PASSWORD = "12Junio1998";
+
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger) {
@@ -62,7 +65,7 @@ namespace AppTernium.Pages {
 
         private void InsertUserLogToDb(Login user) {
             // Insertar en base de datos
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=terniumbd;Uid=root;password=celestials;";
+            string connectionString = $"Server=127.0.0.1;Port=3306;Database=terniumbd;Uid={DB_USER_ID};password={DB_PASSWORD};";
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
 
