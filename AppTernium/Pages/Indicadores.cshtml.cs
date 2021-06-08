@@ -49,7 +49,7 @@ namespace AppTernium.Pages
                     if (a.username != null && a.username == USERNAME) ListAttempts.Add(a);
                 }
 
-                //ListAttempts.Sort((x, y) => y.fec.CompareTo(x.StoredDate));
+                ListAttempts.Sort((x, y) => y.date.CompareTo(x.date));
 
             }
             else
