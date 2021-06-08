@@ -13,21 +13,21 @@
                         <li class="exam-item">
                             <div class="container">
                                 <div class="row d-flex align-items-center">
-                                    <div class="col-6 d-flex align-items-center">
+                                    <div class="col-5 d-flex align-items-center">
                                         <img class="exam-icon" src="~/Images/prueba.png" />
                                         <div class="input-group-text check-wrap">
                                             <input type="checkbox" aria-label="Checkbox for knowing if a user has presented this exam">
                                         </div>
-                                        <span class="flex-grow-1 font-weight-bold" style="font-size:1.5em;">@exam.examName</span>
+                                        <span class="flex-grow-1 exam-name">@exam.examName</span>
                                     </div>
-                                    <div class="col-3 d-flex align-items-center">
+                                    <div class="col-4 d-flex align-items-center">
                                         <span class="font-weight-bold">Cierre:</span>
                                         <div class="closure-time">
                                             <p>@exam.dueDate.ToString("MM/dd/yyyy")</p>
                                             <p>@exam.dueDate.ToString("HH:mm")</p>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3 exam-attempts">
                                         <span class="attempt-count">@exam.attempts</span>
                                         <span class="font-weight-bold">Intentos Restantes</span>
                                     </div>
