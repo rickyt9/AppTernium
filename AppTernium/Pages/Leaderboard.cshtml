@@ -5,15 +5,15 @@
 }
 
 <div class="container d-flex align-items-center justify-content-between mt-5 mb-4">
-    <div class="btn-group btn-group-toggle">
-        <button type="button" class="btn btn-inactive btn-left btn-leaderboard font-weight-bold">EXAMEN</button>
-        <button type="button" class="btn btn-active btn-right btn-leaderboard font-weight-bold">PRÁCTICA</button>
+    <div class="btn-group btn-group-toggle mode-buttons">
+        <button type="button" class="btn btn-inactive btn-left btn-leaderboard">EXAMEN</button>
+        <button type="button" class="btn btn-active btn-right btn-leaderboard">PRÁCTICA</button>
     </div>
 
-    <h1 class="display-4 font-weight-bolder">LEADERBOARD</h1>
+    <h1 class="display-4 leaderboard-text">LEADERBOARD</h1>
 
-    <div class="form-group">
-        <select class="form-control rounded-pill font-weight-bold" onchange="parentNode.submit();">
+    <div class="form-group mb-0">
+        <select class="form-control rounded-pill time-select" >
             <option>SEMANAL</option>
             <option>MENSUAL</option>
             <option>GLOBAL</option>
