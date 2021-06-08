@@ -1,5 +1,5 @@
 ﻿.leaderboard-text {
-    font-size: 4.5vw;
+    font-size: 4em;
     font-weight: bolder;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .btn-leaderboard {
-    font-size: 1vw;
+    font-size: 1em;
     border-width: 1px;
     padding: 0.8em 1em;
     font-weight: bold;
@@ -37,7 +37,7 @@
 }
 
 .time-select {
-    font-size: 1vw;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -50,20 +50,57 @@
 
 @media (max-width: 1200px) {
     .time-select {
-        font-size: 1vw;
+        font-size: 1em;
+    }
+
+    .leaderboard-text {
+        font-size: 3em;
     }
 
     .btn-leaderboard {
-        font-size: 1vw;
+        font-size: 0.8em;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .time-select {
-        font-size: 0.6em;
+        font-size: 1em;
+    }
+
+    .leaderboard-text {
+        font-size: 2.2em;
+    }
+
+    .btn-leaderboard {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 767px) {
+    .time-select {
+        font-size: 0.9em;
+    }
+
+    .leaderboard-text {
+        font-size: 1.6em;
     }
 
     .btn-leaderboard {
         font-size: 0.6em;
+    }
+
+}
+
+@media (max-width: 575px) {
+    .time-select {
+        font-size: 1.4em;
+    }
+
+    .leaderboard-text {
+        display: none;
+    }
+
+    .btn-leaderboard {
+        font-size: 1em;
     }
 }
