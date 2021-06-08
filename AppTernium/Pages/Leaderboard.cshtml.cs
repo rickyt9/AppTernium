@@ -12,6 +12,7 @@ using System.Text;
 using AppTernium.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AppTernium.Pages {
     public class LeaderboardModel : PageModel {
@@ -19,18 +20,42 @@ namespace AppTernium.Pages {
         [BindProperty]
         public List<Score> ListScores { get; set; }
         private string ACCESS_TOKEN;
+        public string selectedFilter { get; set; }
 
-        public async Task OnGetAsync() {
+        public async Task OnGetAsync(string result) {
+
             ACCESS_TOKEN = HttpContext.Session.GetString("token");
 
             string responseContent = "[]";
+            string url;
 
-            Uri baseURL = new Uri("https://chatarrap-api.herokuapp.com/attempts/scores");
+            if (result == null)
+            {
+                url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+            }
+            else
+            {
+                switch (result)
+                {
+                    case "S":
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+                        break;
+                    case "M":
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scores";
+                        break;
+                    case "G":
+                        url = "https://chatarrap-api.herokuapp.com/attempts";
+                        break;
+                    default:
+                        url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek/";
+                        break;
+                }
+            }
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
 
-            HttpResponseMessage response = await client.GetAsync(baseURL.ToString());
+            HttpResponseMessage response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode) {
                 responseContent = await response.Content.ReadAsStringAsync();
@@ -38,6 +63,13 @@ namespace AppTernium.Pages {
             } else {
                 System.Diagnostics.Debug.WriteLine(response.ReasonPhrase);
             }
+        }
+
+        public IActionResult OnPostMyMethod()
+        {
+            selectedFilter = Request.Form["myDrpDown"];
+
+            return RedirectToPage("Leaderboard", new { result = selectedFilter });
         }
 
     }

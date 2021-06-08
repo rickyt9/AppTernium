@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.6.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="MySql.Data" Version="8.0.25" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
@@ -14,6 +15,10 @@
     <None Include="wwwroot\Images\fondo-ternium.png" />
     <None Include="wwwroot\Images\LogoTerniumBlanco.png" />
     <None Include="wwwroot\Images\LogoTerniumTransparente.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Resources\" />
   </ItemGroup>
 
 </Project>
