@@ -81,25 +81,31 @@ namespace AppTernium.Pages {
 
         private List<Medal> GetAllMedals()
         {
-            List<Medal> ListM = new List<Medal>();
+            string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
+            MySqlConnection conexion = new MySqlConnection(connectionString);
+            conexion.Open();
+
+            MySqlCommand cmd = new MySqlCommand();
+            cmd.Connection = conexion;
+            cmd.CommandText = @"SELECT `terniumbd`.`medallasdisponibles`.`idTipo`, `terniumbd`.`medallasdisponibles`.`descripcion`, `terniumbd`.`categoriamedalla`.`categoria`, `terniumbd`.`medallasdisponibles`.`idCategoria`
+FROM `terniumbd`.`medallasdisponibles` 
+join `terniumbd`.`categoriamedalla` ON `terniumbd`.`medallasdisponibles`.`idCategoria` = `terniumbd`.`categoriamedalla`.`idCategoria`;";
+
             Medal med = new Medal();
-
-            string line;
-            //cambia path
-            string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
-            StreamReader file = new StreamReader(path);
-            while ((line = file.ReadLine()) != null)
+            List<Medal> ListM = new List<Medal>();
+            using (var reader = cmd.ExecuteReader())
             {
-                med = new Medal();
-                string[] subs = line.Split(',');
-                med.idTipo = Convert.ToInt32(subs[0]);
-                med.descripcion = subs[1];
-                med.categoria = subs[2];
-                med.idCategoria = Convert.ToInt32(subs[3]);
-                ListM.Add(med);
+                while (reader.Read())
+                {
+                    med = new Medal();
+                    med.idTipo = Convert.ToInt32(reader["idTipo"]);
+                    med.descripcion = reader["descripcion"].ToString();
+                    med.categoria = reader["categoria"].ToString();
+                    med.idCategoria = Convert.ToInt32(reader["idCategoria"]);
+                    ListM.Add(med);
+                }
             }
-            file.Close();
-
+            conexion.Dispose();
             return ListM;
         }
 
