@@ -1,4 +1,11 @@
-﻿
+﻿.leaderboard-text {
+    font-size: 4.5vw;
+    font-weight: bolder;
+}
+
+.mode-buttons {
+    width: 20%;
+}
 
 .btn-left {
     border-top-left-radius: 500px;
@@ -6,8 +13,10 @@
 }
 
 .btn-leaderboard {
+    font-size: 1vw;
     border-width: 1px;
     padding: 0.8em 1em;
+    font-weight: bold;
 }
 
 .btn-active {
@@ -27,7 +36,34 @@
     border-bottom-right-radius: 500px;
 }
 
+.time-select {
+    font-size: 1vw;
+    font-weight: bold;
+}
+
 .table-heading {
     background-color: rgba(5, 16, 29, 0.8) !important;
     color: #FFAD3D !important;
+}
+
+/* RESPONSIVIDAD */
+
+@media (max-width: 1200px) {
+    .time-select {
+        font-size: 1vw;
+    }
+
+    .btn-leaderboard {
+        font-size: 1vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .time-select {
+        font-size: 0.6em;
+    }
+
+    .btn-leaderboard {
+        font-size: 0.6em;
+    }
 }

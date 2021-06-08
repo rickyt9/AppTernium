@@ -7,12 +7,21 @@
     width: 3em;
 }
 
+.exam-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
 .exam-item {
     display: flex;
     align-items: center;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
     padding: 0.5rem 2rem;
+}
+
+.exam-attempts {
+    font-size: 1rem;
 }
 
 .closure-time {
@@ -29,4 +38,20 @@
 .attempt-count {
     margin-right: 0.5rem;
     font-size: 1.75em;
+}
+
+/* RESPONSIVIDAD */
+
+@media (max-width: 768px) {
+    .exam-name {
+        font-size: 1em;
+    }
+
+    .closure-time {
+        font-size: 0.8em;
+    }
+
+    .exam-attempts {
+        font-size: 0.8em;
+    }
 }
