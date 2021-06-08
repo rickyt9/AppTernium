@@ -1,0 +1,44 @@
+﻿@page
+@model IndicadoresModel
+@{
+}
+
+<div class="container d-flex align-items-center justify-content-between mt-5 mb-4">
+    <h1 class="display-4 font-weight-bolder">INDICADORES</h1>
+</div>
+
+
+<div class="table text-dark">
+    <table class="table table-hover table-striped">
+        <thead class="thead-dark text-center">
+            <tr class="">
+                <th class="px-4">Fecha</th>
+                <th class="px-4">Nombre de Examen</th>
+                <th class="px-4">Puntuación</th>
+                <th class="px-4">Intentos</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @{
+                foreach (var item in Model.ListAttempts)
+                {
+                    <tr>
+                        <td>
+                            @item.date
+                        </td>
+                        <td>
+                            @item.examName
+                        </td>
+                        <td>
+                            @item.score
+                        </td>
+                        <td>
+                            @item.attempt
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
