@@ -72,15 +72,18 @@ namespace AppTernium.Pages {
             }
         }
 
-        private List<Medal> GetAllMedals() {
-            List<Medal> ListM = new List<Medal>();
-            Medal med = new Medal();
+        private List<Medal> GetAllMedals()
+        {
+            string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
+            MySqlConnection conexion = new MySqlConnection(connectionString);
+            conexion.Open();
 
             string line;
             //cambia path
-            string path = "wwwroot/Resources/medallas.txt";
+            string path = "C:/Users/david/Documents/GitHub/AppTernium/AppTernium/wwwroot/Resources/medallas.txt";
             StreamReader file = new StreamReader(path);
-            while ((line = file.ReadLine()) != null) {
+            while ((line = file.ReadLine()) != null)
+            {
                 med = new Medal();
                 string[] subs = line.Split(',');
                 med.idTipo = Convert.ToInt32(subs[0]);
