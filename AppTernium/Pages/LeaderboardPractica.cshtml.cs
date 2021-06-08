@@ -24,13 +24,12 @@ namespace AppTernium.Pages
         public List<Score> ListaScore { get; set; }
         public string selectedFilter { get; set; }
 
-        public void OnGet()
+        public void OnGet(string result)
         {
-            ListaScore = GetScoresDB();
-            selectedFilter = "S";
+            ListaScore = GetScoresDB(result);
         }
 
-        private List<Score> GetScoresDB()
+        private List<Score> GetScoresDB(String result)
         {
             string connectionString = "Server = 127.0.0.1; Port = 3306; Database = terniumbd; Uid = root; password = celestials;";
             MySqlConnection conexion = new MySqlConnection(connectionString);
@@ -38,7 +37,38 @@ namespace AppTernium.Pages
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conexion;
-            cmd.CommandText = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+            string cmdTxt;
+
+            if (result == null)
+            {
+                cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+            }
+            else
+            {
+                switch (result)
+                {
+                    case "S":
+                        cmdTxt = @"SELECT * FROM terniumbd.partida
+                                WHERE  YEARWEEK(`fecha`, 1) = YEARWEEK(CURDATE(), 1)
+                                ORDER BY puntos desc;";
+                        break;
+                    case "M":
+                        cmdTxt = @"SELECT * FROM terniumbd.partida
+                                WHERE YEAR(fecha) = YEAR(CURRENT_DATE)
+                                AND MONTH(fecha) = MONTH(CURRENT_DATE)
+                                ORDER BY puntos desc;";
+                        break;
+                    case "G":
+                        cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+                        break;
+                    default:
+                        cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+                        break;
+                }
+            }
+
+
+            cmd.CommandText = cmdTxt;
 
             Score scr = new Score();
             List<Score> ListaS = new List<Score>();
@@ -54,6 +84,13 @@ namespace AppTernium.Pages
             }
             conexion.Dispose();
             return ListaS;
+        }
+
+        public IActionResult OnPostMyMethod()
+        {
+            selectedFilter = Request.Form["myDrpDown"];
+
+            return RedirectToPage("LeaderboardPractica", new { result = selectedFilter });
         }
     }
 }
