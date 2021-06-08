@@ -84,17 +84,17 @@ namespace AppTernium.Pages {
             StreamReader file = new StreamReader(path);
             while ((line = file.ReadLine()) != null)
             {
-                med = new Medal();
+                Medal med = new Medal();
                 string[] subs = line.Split(',');
                 med.idTipo = Convert.ToInt32(subs[0]);
                 med.descripcion = subs[1];
                 med.categoria = subs[2];
                 med.idCategoria = Convert.ToInt32(subs[3]);
-                ListM.Add(med);
+                ListMedals.Add(med);
             }
             file.Close();
 
-            return ListM;
+            return ListMedals;
         }
 
         private List<Medal> GetMedDB(string username) {
