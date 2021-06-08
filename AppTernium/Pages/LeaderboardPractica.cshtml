@@ -1,6 +1,6 @@
 ﻿@page
 @using Newtonsoft.Json.Linq;
-@model LeaderboardModel
+@model LeaderboardPracticaModel
 @{
 }
 
@@ -39,7 +39,7 @@
         <tbody>
             @{
                 int counter = 1;
-                foreach (var item in Model.ListScores)
+                foreach (var item in Model.ListaScore)
                 {
                     <tr>
                         <td>
@@ -47,11 +47,16 @@
                         </td>
                         <td>
                             @item.username
-                            @if (counter == 1) {
+                            @if (counter == 1)
+                            {
 
-                            } else if (counter == 2) {
+                            }
+                            else if (counter == 2)
+                            {
 
-                            } else if (counter == 3) {
+                            }
+                            else if (counter == 3)
+                            {
 
                             }
                         </td>
