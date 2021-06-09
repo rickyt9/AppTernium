@@ -31,19 +31,24 @@ namespace AppTernium.Pages {
 
             if (result == null) {
                 url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+                selectedFilter = "S";
             } else {
                 switch (result) {
                     case "S":
                         url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek";
+                        selectedFilter = "S";
                         break;
                     case "M":
                         url = "https://chatarrap-api.herokuapp.com/attempts/scores";
+                        selectedFilter = "M";
                         break;
                     case "G":
                         url = "https://chatarrap-api.herokuapp.com/attempts";
+                        selectedFilter = "G";
                         break;
                     default:
                         url = "https://chatarrap-api.herokuapp.com/attempts/scoresWeek/";
+                        selectedFilter = "S";
                         break;
                 }
             }
