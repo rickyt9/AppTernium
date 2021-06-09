@@ -6,8 +6,8 @@
 
 
 <div class="container">
-    <div id="gameContainer">
-        <canvas id="unity-canvas" data-pixel-art="true"></canvas>
+    <div id="gameContainer" class="position-static w-100">
+        <canvas id="unity-canvas" class="position-static" data-pixel-art="true"></canvas>
         <script src="~/Build/Build.loader.js"></script>
         <script>
             createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -40,7 +40,7 @@
                         h = 600;
                     }
 
-                    container.style.width = canvas.style.width = w + "px";
+                    container.style.width = canvas.style.width = 100 + "%";
                     container.style.height = canvas.style.height = h + "px";
                     container.style.top = Math.floor((window.innerHeight - h) / 2) + "px";
                     container.style.left = Math.floor((window.innerWidth - w) / 2) + "px";
