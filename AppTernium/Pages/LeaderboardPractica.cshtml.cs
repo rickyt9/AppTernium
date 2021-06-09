@@ -40,24 +40,29 @@ namespace AppTernium.Pages {
 
             if (result == null) {
                 cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+                selectedFilter = "G";
             } else {
                 switch (result) {
                     case "S":
                         cmdTxt = @"SELECT * FROM terniumbd.partida
                                 WHERE  YEARWEEK(`fecha`, 1) = YEARWEEK(CURDATE(), 1)
                                 ORDER BY puntos desc;";
+                        selectedFilter = "S";
                         break;
                     case "M":
                         cmdTxt = @"SELECT * FROM terniumbd.partida
                                 WHERE YEAR(fecha) = YEAR(CURRENT_DATE)
                                 AND MONTH(fecha) = MONTH(CURRENT_DATE)
                                 ORDER BY puntos desc;";
+                        selectedFilter = "M";
                         break;
                     case "G":
                         cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+                        selectedFilter = "G";
                         break;
                     default:
                         cmdTxt = "SELECT * FROM terniumbd.partida ORDER BY puntos desc;";
+                        selectedFilter = "G";
                         break;
                 }
             }
