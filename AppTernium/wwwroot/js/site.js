@@ -5,7 +5,7 @@
 let options = {
     startAngle: -1.55,
     size: 150,
-    value: 0.50,
+    value: 1.0,
     fill: { gradient: ["#ff3300","#ff9900"] }
 }
 $(".circle .bar").circleProgress(options).on('circle-animation-progress',

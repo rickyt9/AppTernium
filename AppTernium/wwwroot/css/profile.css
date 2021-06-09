@@ -1,5 +1,5 @@
 ﻿.user-image {
-    font-size: 14vw;
+    font-size: 14em;
 }
 
 .user-data {
@@ -27,8 +27,8 @@
 }
 
 .streak-border {
-    width: 12vw;
-    height: 12vw;
+    width: 12em;
+    height: 12em;
     border-radius: 50%;
     background-image: linear-gradient( 70deg,#f30,#f90);
     display: flex;
@@ -44,7 +44,7 @@
 }
 
 .streak-num {
-    font-size: 8vw;
+    font-size: 8em;
 }
 
 .medal-card {
@@ -84,8 +84,8 @@
 
     .card-top .circle {
         position: relative;
-        height: 14vw;
-        width: 14vw;
+        height: 150px;
+        width: 150px;
         border-radius: 50%;
     }
 
@@ -115,8 +115,8 @@
     }
 
     .bar canvas {
-        width: 14vw;
-        height: 14vw;
+        width: 150px;
+        height: 150px;
     }
 
 /* RESPONSIVIDAD */
@@ -124,6 +124,15 @@
 @media (max-width: 1200px) {
     .user-image {
         font-size: 12em;
+    }
+
+    .streak-border {
+        width: 10em;
+        height: 10em;
+    }
+
+    .streak-num {
+        font-size: 6em;
     }
 
     .user-info {
@@ -135,7 +144,57 @@
     }
 }
 
-@media(max-width: 768px) {
+@media(max-width: 991px) {
+    .user-image {
+        font-size: 10em;
+    }
+
+    .streak-border {
+        width: 8em;
+        height: 8em;
+    }
+
+    .streak-style h5 {
+        font-size: 1.5em;
+    }
+
+    .streak-num {
+        font-size: 4em;
+    }
+
+    .user-info {
+        font-size: 1em;
+    }
+
+    .user-data {
+        font-size: 1.2em;
+    }
+
+    .card-top .circle,
+    .bar canvas {
+        width: 125px;
+        height: 125px;
+    }
+
+    .medal-card {
+        width: 10em;
+    }
+}
+
+@media(max-width: 767px) {
+    .user-image {
+        font-size: 8em;
+    }
+
+    .streak-border {
+        width: 6em;
+        height: 6em;
+    }
+
+    .streak-style h5 {
+        font-size: 1em;
+    }
+
     .card-top .circle,
     .bar canvas {
         width: 100px;
