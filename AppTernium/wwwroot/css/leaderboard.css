@@ -46,6 +46,30 @@
     color: #FFAD3D !important;
 }
 
+.medalla-oro {
+    height: 25px;
+    width: 25px;
+    background-color: #FCC201;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.medalla-plata {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.medalla-bronze {
+    height: 25px;
+    width: 25px;
+    background-color: #967444;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 /* RESPONSIVIDAD */
 
 @media (max-width: 1200px) {
