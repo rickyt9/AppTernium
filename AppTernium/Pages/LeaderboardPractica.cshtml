@@ -16,8 +16,8 @@
 
     <h1 class="display-4 leaderboard-text">LEADERBOARD</h1>
 
-    <form class="form-group" method="post" asp-page-handler="MyMethod">
-        <select id="myDrpDown" name="myDrpDown" class="form-control rounded-pill font-weight-bold" asp-for="selectedFilter" onchange="this.form.submit();">
+    <form class="form-group mb-0" method="post" asp-page-handler="MyMethod">
+        <select id="myDrpDown" name="myDrpDown" class="form-control rounded-pill time-select" asp-for="selectedFilter" onchange="this.form.submit();">
             <option selected disabled hidden>Elige Tiempo</option>
             <option value="S">SEMANAL</option>
             <option value="M">MENSUAL</option>
