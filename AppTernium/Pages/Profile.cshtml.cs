@@ -53,6 +53,8 @@ namespace AppTernium.Pages {
             HttpClient client3 = new HttpClient();
             client2.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
             HttpResponseMessage response3 = await client2.GetAsync(baseURL2.ToString());
+            client3.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
+            HttpResponseMessage response3 = await client2.GetAsync(baseURL3.ToString());
 
             if (response3.IsSuccessStatusCode)
             {
