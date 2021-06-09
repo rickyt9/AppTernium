@@ -21,6 +21,7 @@ namespace AppTernium.Pages {
         private const string DB_PASSWORD = "12Junio1998";
 
         [BindProperty]
+        public List<Attempt> ListAttemptsM { get; set; }
         public List<Attempt> ListAttempts { get; set; }
         public List<Medal> ListMedals { get; set; }
         public List<Medal> ListAllMedals { get; set; }
@@ -45,6 +46,29 @@ namespace AppTernium.Pages {
             HttpResponseMessage response2 = await client2.GetAsync(baseURL2.ToString());
             responseContent2 = await response2.Content.ReadAsStringAsync();
             user = JsonConvert.DeserializeObject<User>(responseContent2);
+
+
+            string responseContent3 = "[]";
+            Uri baseURL3 = new Uri($"https://chatarrap-api.herokuapp.com/attempts/scoresPast");
+            HttpClient client3 = new HttpClient();
+            client3.DefaultRequestHeaders.Add("auth_key", ACCESS_TOKEN);
+            HttpResponseMessage response3 = await client3.GetAsync(baseURL3.ToString());
+
+            if (response3.IsSuccessStatusCode)
+            {
+                responseContent3 = await response3.Content.ReadAsStringAsync();
+                List<Attempt> ListAM = JsonConvert.DeserializeObject<List<Attempt>>(responseContent3);
+                ListAttemptsM = new List<Attempt>();
+                foreach (Attempt a in ListAM)
+                {
+                    if (a.username != null && a.username == USERNAME) ListAttemptsM.Add(a);
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine(response2.ReasonPhrase);
+            }
+
 
             string responseContent = "[]";
 
@@ -134,6 +158,8 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
 
         private void CheckForMedals() {
             examCount = ListAttempts.Count;
+            int indexMes = ListAttemptsM.FindIndex(f => f.username == USERNAME);
+            int indexGlobal = ListAttempts.FindIndex(f => f.username == USERNAME);
 
             perfectCount = 0;
             foreach (Attempt a in ListAttempts) {
@@ -149,6 +175,11 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
             if (perfectCount >= 10) MedalsDB.Add(6);
             if (perfectCount >= 50) MedalsDB.Add(7);
             if (perfectCount >= 100) MedalsDB.Add(8);
+            if (indexGlobal <= 9 || indexMes <= 9) MedalsDB.Add(9);
+            if (indexMes <= 9) MedalsDB.Add(10);
+            if (indexMes == 0) MedalsDB.Add(13);
+            if (indexMes == 1) MedalsDB.Add(14);
+            if (indexMes == 2) MedalsDB.Add(15);
 
             InsertMedalsDB(MedalsDB);
         }
