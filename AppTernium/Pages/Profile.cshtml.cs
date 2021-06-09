@@ -202,6 +202,7 @@ Where `terniumbd`.`medallausuario`.`username` = @username;";
                         cmd.Prepare();
 
                         cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
                     }
                 }
             }
