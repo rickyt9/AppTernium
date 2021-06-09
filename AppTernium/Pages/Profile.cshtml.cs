@@ -18,7 +18,7 @@ using System.IO;
 namespace AppTernium.Pages {
     public class ProfileModel : PageModel {
         private const string DB_USER_ID = "root";
-        private const string DB_PASSWORD = "celestials";
+        private const string DB_PASSWORD = "12Junio1998";
 
         [BindProperty]
         public List<Attempt> ListAttempts { get; set; }
