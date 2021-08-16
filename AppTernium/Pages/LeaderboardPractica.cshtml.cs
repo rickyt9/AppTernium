@@ -19,7 +19,7 @@ using MySql.Data.MySqlClient;
 namespace AppTernium.Pages {
     public class LeaderboardPracticaModel : PageModel {
         private const string DB_USER_ID = "root";
-        private const string DB_PASSWORD = "12Junio1998";
+        private const string DB_PASSWORD = "";
 
         [BindProperty]
         public List<Score> ListaScore { get; set; }
